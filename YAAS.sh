@@ -8,7 +8,7 @@
 # -----------------------------
 
 user_folder="" #We are going to create the CTF's file here, otherwise we are going to use your current directory.
-#gobuster_dic="" #We need this dictionary or another one to use with gobuster.
+gobuster_dic="" #We need this dictionary or another one to use with gobuster.
 #hugo_dir="" #Put your Hugo path here.
 
 ##Colors
@@ -257,14 +257,15 @@ if [[ "$web_server" = true ]]; then
 			fi
 		else
 			if [ -f "$gobuster_dic" ]; then
+				gobuster_dic=$gobuster_dic
 			else
 				until [ -f "$gobuster_input" ]; do
 					box_out "DICTIONARY FOR GOBUSTER NOT FOUND"
 					read -p "[+] Dictionary Path [/usr/share/wordlists/dirb/common.txt] : " gobuster_input
 				done
+				gobuster_dic=$gobuster_input
 			fi
 		fi
-		gobuster_dic=$gobuster_input
 
 		gobuster dir -w ${gobuster_dic} --threads 50 -x txt,old,bak,zip,php,html,txt,bak,old,pdf -u "http://$ip:$port_web" 2> /dev/null | tee Gobuster_Scan.txt
 		cat Gobuster_Scan.txt | grep '301\|200' |  awk -F/ '{print $2}'| sed -e 's/\s.*$//' > endpoints.txt
@@ -332,3 +333,5 @@ echo -e "[+] Hugo post created?  : " $hugo_created
 
 
 rm endpoints.txt output_nmap searchingfor_WP.txt 2> /dev/null
+
+exit 0
