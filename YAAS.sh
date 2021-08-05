@@ -7,7 +7,7 @@
 #|                             |
 # -----------------------------
 
-user_folder="/home/lanfran/THM/" #We are going to create the CTF's file here, otherwise we are going to use your current directory.
+user_folder="" #We are going to create the CTF's file here, otherwise we are going to use your current directory.
 #gobuster_dic="" #We need this dictionary or another one to use with gobuster.
 #hugo_dir="" #Put your Hugo path here.
 
