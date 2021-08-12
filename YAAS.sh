@@ -96,18 +96,26 @@ function check_result(){
 function print_help(){
   banner
   cat <<EOF
-Usage: $(basename "${BASH_SOURCE[0]}") [-h] [-f] -n Folder_Name -i Machine_IP
+Usage: $(basename "${BASH_SOURCE[0]}") [-b] [-f] -i Machine_IP -n Folder_Name [-h]
 
-Description here :)
+Beginners friendly automation script to run in the recon phase of a CTF. Designed to avoid repeating always the same commands...
+Created by a lazy human, for lazy humans ;) 
 
 Available options:
 
+-b               Batch mode, run the scan with default config.
 -f               Run the NMAP Scan faster.
 -i               Set the Machine's IP address.
 -n [Folder_Name] Name for the Folder.
 -h               Print this help and exit.
 
-Example: $(basename "${BASH_SOURCE[0]}") -n mrrobot_THM -i 10.10.252.63
+Examples:
+  $(basename "${BASH_SOURCE[0]}")
+  $(basename "${BASH_SOURCE[0]}") -f 
+  $(basename "${BASH_SOURCE[0]}") -i localhost -b
+  $(basename "${BASH_SOURCE[0]}") -n mrrobot_THM -i 10.10.252.63 			
+  $(basename "${BASH_SOURCE[0]}") -n potato_OFSC -i 10.10.152.12 -b -f 
+
 EOF
 }
 
